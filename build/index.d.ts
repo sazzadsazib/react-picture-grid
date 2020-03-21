@@ -1,2 +1,2 @@
-import ReactPictureGrid from './components/ReactPictureGrid';
+import ReactPictureGrid from './components/PictureGrid';
 export { ReactPictureGrid };
