@@ -1,6 +1,6 @@
-# my-components
+# React Picture Grid
 
-This is a template repo. just clone it, export it and rename to set your own component library module name.
+Coming soon
 
 ## Usage
 

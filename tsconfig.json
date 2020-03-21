@@ -19,6 +19,6 @@
     "noUnusedParameters": true,
     "esModuleInterop": true
   },
-  "include": ["src"],
+  "include": ["src", "commitlint.config.js"],
   "exclude": ["node_modules", "build"]
 }

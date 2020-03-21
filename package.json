@@ -17,6 +17,8 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.7.7",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@storybook/react": "^5.3.17",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
@@ -25,7 +27,11 @@
     "@types/react-dom": "^16.9.4",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
+    "husky": "^4.2.3",
     "jest": "^24.9.0",
+    "lint-staged": "^10.0.8",
+    "node-sass": "^4.13.1",
+    "prettier": "^1.19.1",
     "prettier-standard": "^16.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -62,6 +68,21 @@
       "expect",
       "afterAll",
       "jest"
+    ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,scss,html,md}": [
+      "prettier --write",
+      "git add"
     ]
   }
 }
