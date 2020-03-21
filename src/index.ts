@@ -1,3 +1,5 @@
-import ReactPictureGrid from './components/ReactPictureGrid'
+import ReactPictureGrid from './components/PictureGrid';
+import Button from './components/Button';
 
-export { ReactPictureGrid }
+
+export { ReactPictureGrid, Button }
