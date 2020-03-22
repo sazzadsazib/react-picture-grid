@@ -72,7 +72,7 @@ then call component
 | imageClass  | string              | any custom class if you want to pass directly to image file                                                               |
 | pattern     | array               | string array of (**big** - **tall** - **small** - **wide**) . big - 2x2, small- 1x1, wide - 1x2, tall - 2x1               |
 
-#### Data Prop
+### Data Prop
 
 | Prop        | Type   | Details                   |
 | ----------- | ------ | ------------------------- |
