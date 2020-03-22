@@ -115,3 +115,8 @@ Fork the repo. pull the master branch if required. [**Create a issue**](https://
 #### 23 March 2020 - v 1.0.0
 
 - [x] Initial Release with Component.
+
+#### 23 March 2020 - v 1.0.1
+
+- [x] Updated Documentation
+- [x] Updated storybook
