@@ -72,6 +72,14 @@ then call component
 | imageClass  | string              | any custom class if you want to pass directly to image file                                                               |
 | pattern     | array               | string array of (**big** - **tall** - **small** - **wide**) . big - 2x2, small- 1x1, wide - 1x2, tall - 2x1               |
 
+#### Data Prop
+
+| Prop        | Type   | Details                   |
+| ----------- | ------ | ------------------------- |
+| image       | string | Image link you show       |
+| title       | string | Title of that image       |
+| description | string | Description of that image |
+
 ## Develop
 
 Clone the repo from github
