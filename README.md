@@ -1,6 +1,6 @@
 <img src="https://i.ibb.co/rpDjwVM/cover.png" width="60%">
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4251cb0b404a46c4bf103b31a47568e4)](https://app.codacy.com/manual/sazzadsazib_2/react-picture-grid?utm_source=github.com&utm_medium=referral&utm_content=sazzadsazib/react-picture-grid&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9ff431a574974b198703608d4da703c4)](https://www.codacy.com/manual/sazzadsazib_2/react-picture-grid?utm_source=github.com&utm_medium=referral&utm_content=sazzadsazib/react-picture-grid&utm_campaign=Badge_Grade) ![GitHub top language](https://img.shields.io/github/languages/top/sazzadsazib/react-picture-grid) ![GitHub language count](https://img.shields.io/github/languages/count/sazzadsazib/react-picture-grid) ![npm bundle size](https://img.shields.io/bundlephobia/min/react-picture-grid) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/sazzadsazib/react-picture-grid) ![npm](https://img.shields.io/npm/dy/react-picture-grid) ![NPM](https://img.shields.io/npm/l/react-picture-grid) ![npm](https://img.shields.io/npm/v/react-picture-grid) ![GitHub Release Date](https://img.shields.io/github/release-date/sazzadsazib/react-picture-grid)
 
 ## Demo
 
@@ -116,9 +116,9 @@ Fork the repo. pull the master branch if required. [**Create a issue**](https://
 
 ### 23 March 2020 - v 1.0.0
 
--  [x] Initial Release with Component.
+- [x] Initial Release with Component.
 
 ### 23 March 2020 - v 1.0.1
 
--  [x] Updated Documentation
--  [x] Updated storybook
+- [x] Updated Documentation
+- [x] Updated storybook
