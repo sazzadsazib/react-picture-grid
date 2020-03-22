@@ -3,6 +3,7 @@ import PictureGrid from './index';
 
 export default { title: 'React Picture Grid' };
 
+
 const data: any[] = [
   {
     image:
@@ -41,4 +42,10 @@ const data: any[] = [
     description: 'This picture is taken from unsplash.com',
   },
 ];
-export const basic = () => <PictureGrid data={data} showTitle gap={10} />;
+export const withData = () => <PictureGrid data={data} />;
+export const showTitle = () => <PictureGrid data={data} showTitle />;
+export const withCustomGap = () => <PictureGrid data={data}  gap={5} />;
+export const withNoGap = () => <PictureGrid data={data}  gap={0} pattern={['small','small','tall','tall','big','wide','wide']}  />;
+export const ChangeOfPattern = () => <PictureGrid data={data} pattern={['small','small','tall','tall','big','wide','wide']} />;
+export const WithNoData = () => <PictureGrid  />;
+
