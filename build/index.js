@@ -4,32 +4,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
 
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-
 function unwrapExports (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
@@ -2904,19 +2878,107 @@ var lib_71 = lib.placeholder;
 var lib_72 = lib.cssFor;
 var lib_73 = lib.attribsFor;
 
-var rule = lib_18({
-    color: 'red',
+var photoGrid = lib_18({
+    display: 'grid',
+    gap: '1rem',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+    gridAutoRows: '240px',
+});
+var card = lib_18({
+    position: 'relative',
+    cursor: 'pointer',
+    overflow: 'hidden',
+});
+var cardElement = lib_18({
+    backgroundSize: 'cover',
+    width: '100%',
+    height: '100%',
+    transition: 'all 0.2s ease-in',
+    position: 'relative',
     ':hover': {
-        color: 'pink',
-    },
-    '@media(max-width: 800px)': {
-        color: 'green',
-        ':hover': {
-            color: 'yellow',
-        },
+        transform: 'scale(1.1)',
     },
 });
-var PictureGrid = function () { return (React.createElement("div", __assign({ role: 'heading' }, rule), "React Picture Grid")); };
+var cardTall = lib_18({
+    '@media(min-width: 600px)': {
+        gridRow: 'span 2 / auto',
+    },
+});
+var cardWide = lib_18({
+    '@media(min-width: 600px)': {
+        gridColumn: 'span 2 / auto',
+    },
+});
+var cardDetails = lib_18({
+    position: 'absolute',
+    bottom: '0',
+    background: 'rgba(0,0,0,0.3)',
+    width: '100%',
+    padding: '5px 15px',
+});
+var title = lib_18({
+    color: 'white',
+    marginBottom: '0 !important',
+    fontWeight: 'bold',
+    fontSize: '1.1rem',
+    textTransform: 'capitalize',
+});
+var description = lib_18({
+    color: 'rgb(201, 201, 201)',
+    marginTop: '3px !important',
+    fontWeight: 'normal',
+    fontSize: '0.9rem',
+});
+var noData = lib_18({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    minHeight: '400px',
+});
+var generatePatternClass = function (pattern, index) {
+    if (pattern.length > 0) {
+        var currentPattern = pattern[index % pattern.length];
+        switch (currentPattern) {
+            case 'big':
+                return card + " " + cardTall + " " + cardWide;
+            case 'tall':
+                return card + " " + cardTall;
+            case 'wide':
+                return card + " " + cardWide;
+            case 'small':
+            default:
+                return "" + card;
+        }
+    }
+    return "" + card;
+};
+var PictureGrid = function (_a) {
+    var data = _a.data, showTitle = _a.showTitle, gap = _a.gap, className = _a.className, imageClass = _a.imageClass, pattern = _a.pattern;
+    return (React.createElement("div", { className: photoGrid + " " + className, style: { gap: gap + "px" } },
+        !!data && data.length === 0 && (React.createElement("div", { className: "" + noData }, " No Image Provided")),
+        !!data &&
+            data.length > 0 &&
+            data.map(function (grid, i) { return (React.createElement("div", { key: i, className: "" + (!!pattern ? generatePatternClass(pattern, i) : []) },
+                React.createElement("div", { className: cardElement + " " + imageClass, style: {
+                        backgroundImage: "url('" + (!!grid.image
+                            ? grid.image
+                            : 'https://i.ibb.co/rkCBGSG/Artboard-1.png') + "')",
+                    } }),
+                showTitle && (React.createElement("div", { className: "" + cardDetails },
+                    React.createElement("p", { className: "" + title }, grid.title || 'Title'),
+                    React.createElement("p", { className: "" + description }, grid.description || 'Description'))))); })));
+};
+PictureGrid.defaultProps = {
+    data: [],
+    showTitle: false,
+    showPreview: false,
+    gap: 16,
+    className: '',
+    imageClass: '',
+    pattern: ['big', 'tall', 'small', 'small', 'wide', 'wide'],
+};
 
 exports.ReactPictureGrid = PictureGrid;
 //# sourceMappingURL=index.js.map

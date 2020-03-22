@@ -1,6 +1,6 @@
 {
   "name": "react-picture-grid",
-  "version": "1.0.0-beta",
+  "version": "1.0.0",
   "description": "React Picture Grid Library",
   "main": "build/index.js",
   "module": "build/index.es.js",
