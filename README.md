@@ -6,7 +6,7 @@
 
 ## How to Use
 
-Install **[ React Picture Grid](https://github.com/sazzadsazib/react-picture-grid)** as dependency
+Install **[ react-picture-grid](https://github.com/sazzadsazib/react-picture-grid)** as dependency
 
 ```
 npm i react-picture-grid --save
@@ -106,17 +106,17 @@ To run tests
 $ yarn test
 ```
 
-## How to Contribute?
+## How to Contribute
 
 Fork the repo. pull the master branch if required. [**Create a issue**](https://github.com/sazzadsazib/react-picture-grid/issues) why we need this feature, then create your **feature branch** do your changes. write **test code** if required. and Send a **Pull Request** . PR's are always welcome!
 
 ## Release log
 
-#### 23 March 2020 - v 1.0.0
+### 23 March 2020 - v 1.0.0
 
 - [x] Initial Release with Component.
 
-#### 23 March 2020 - v 1.0.1
+### 23 March 2020 - v 1.0.1
 
 - [x] Updated Documentation
 - [x] Updated storybook
