@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { useState, createElement } from 'react';
 
 function unwrapExports (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
@@ -2933,6 +2933,60 @@ var noData = lib_18({
     fontWeight: 'bold',
     minHeight: '400px',
 });
+var imageViewerStyle = lib_18({
+    background: 'rgba(0,0,0,0.7)',
+    position: 'absolute',
+    height: '100vh',
+    width: '100vw',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+});
+var imagePreview = lib_18({
+    width: 'auto',
+    height: '80vh',
+    marginTop: '-10vh',
+    borderRadius: 5
+});
+var closeButton = lib_18({
+    height: 30,
+    width: 30,
+    position: 'absolute',
+    top: 30,
+    right: 40,
+    cursor: 'pointer',
+    transform: 'scale(1.0)',
+    transition: 'all 0.2s ease-in',
+    ':hover': {
+        transform: 'scale(1.2)',
+    },
+});
+var arrowLeft = lib_18({
+    height: 30,
+    width: 30,
+    position: 'absolute',
+    left: 30,
+    top: '48%',
+    cursor: 'pointer',
+    transform: 'scale(1.0)',
+    transition: 'all 0.1s ease-in',
+    ':hover': {
+        transform: 'scale(1.1)',
+    },
+});
+var arrowRight = lib_18({
+    height: 30,
+    width: 30,
+    position: 'absolute',
+    right: 30,
+    top: '48%',
+    cursor: 'pointer',
+    transform: 'scale(1.0)',
+    transition: 'all 0.1s ease-in',
+    ':hover': {
+        transform: 'scale(1.1)',
+    },
+});
 var generatePatternClass = function (pattern, index) {
     if (pattern.length > 0) {
         var currentPattern = pattern[index % pattern.length];
@@ -2951,20 +3005,58 @@ var generatePatternClass = function (pattern, index) {
     return "" + card;
 };
 var PictureGrid = function (_a) {
-    var data = _a.data, showTitle = _a.showTitle, gap = _a.gap, className = _a.className, imageClass = _a.imageClass, pattern = _a.pattern;
-    return (createElement("div", { className: photoGrid + " " + className, style: { gap: gap + "px" } },
+    var data = _a.data, showTitle = _a.showTitle, showPreview = _a.showPreview, gap = _a.gap, className = _a.className, imageClass = _a.imageClass, pattern = _a.pattern;
+    var _b = useState(-1), currentImage = _b[0], setCurrentImage = _b[1];
+    var _c = useState(false), isShown = _c[0], setIsShown = _c[1];
+    return (createElement("div", { className: photoGrid + " " + className, style: isShown
+            ? { gap: gap + "px", height: '100vh', overflow: 'hidden' }
+            : { gap: gap + "px" } },
         !!data && data.length === 0 && (createElement("div", { className: "" + noData }, " No Image Provided")),
         !!data &&
             data.length > 0 &&
             data.map(function (grid, i) { return (createElement("div", { key: i, className: "" + (!!pattern ? generatePatternClass(pattern, i) : []) },
-                createElement("div", { className: cardElement + " " + imageClass, style: {
+                createElement("div", { className: cardElement + " " + imageClass, onClick: function () {
+                        if (showPreview) {
+                            setCurrentImage(i);
+                            setIsShown(true);
+                        }
+                    }, style: {
                         backgroundImage: "url('" + (!!grid.image
                             ? grid.image
                             : 'https://i.ibb.co/rkCBGSG/Artboard-1.png') + "')",
                     } }),
                 showTitle && (createElement("div", { className: "" + cardDetails },
                     createElement("p", { className: "" + title }, grid.title || 'Title'),
-                    createElement("p", { className: "" + description }, grid.description || 'Description'))))); })));
+                    createElement("p", { className: "" + description }, grid.description || 'Description'))))); }),
+        isShown && currentImage >= 0 && (createElement("div", { className: "" + imageViewerStyle },
+            createElement("img", { className: "" + imagePreview, src: (!!data && data[currentImage].image) ||
+                    'https://i.ibb.co/rkCBGSG/Artboard-1.png', alt: 'image-preview' }),
+            createElement("svg", { className: "" + closeButton, onClick: function () {
+                    setIsShown(false);
+                    setCurrentImage(-1);
+                }, viewBox: '0 0 512 512' },
+                createElement("path", { d: 'm416 512h-320c-53.023438 0-96-42.976562-96-96v-320c0-53.023438 42.976562-96 96-96h320c53.023438 0 96 42.976562 96 96v320c0 53.023438-42.976562 96-96 96zm0 0', fill: 'rgba(255,255,255,0.5)' }),
+                createElement("g", { fill: 'rgba(255,255,255,0.9)' },
+                    createElement("path", { d: 'm342.734375 312.574219-143.308594-143.308594c-6.257812-6.257813-16.386719-6.257813-22.625 0l-7.535156 7.535156c-6.257813 6.253907-6.257813 16.382813 0 22.625l143.308594 143.308594c6.257812 6.257813 16.386719 6.257813 22.625 0l7.535156-7.535156c6.257813-6.253907 6.257813-16.382813 0-22.625zm0 0' }),
+                    createElement("path", { d: 'm312.574219 169.265625-143.308594 143.308594c-6.257813 6.257812-6.257813 16.386719 0 22.625l7.535156 7.535156c6.253907 6.257813 16.382813 6.257813 22.625 0l143.308594-143.308594c6.257813-6.257812 6.257813-16.386719 0-22.625l-7.535156-7.535156c-6.253907-6.257813-16.382813-6.257813-22.625 0zm0 0' }))),
+            createElement("svg", { "aria-hidden": 'true', focusable: 'false', onClick: function () {
+                    if (currentImage > 0) {
+                        setCurrentImage(currentImage - 1);
+                    }
+                }, role: 'img', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 448 512', className: "" + arrowLeft },
+                createElement("g", null,
+                    createElement("path", { fill: 'rgba(255,255,255,0.5)', d: 'M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zM288 372.6c0 10.14-14.07 15.21-22.29 8L131.82 264a10.38 10.38 0 0 1 0-16.08l133.89-116.57c8.22-7.16 22.29-2.09 22.29 8.05z' }),
+                    createElement("path", { fill: 'rgba(255,255,255,0.9)', d: 'M288 372.6c0 10.14-14.07 15.21-22.29 8L131.82 264a10.38 10.38 0 0 1 0-16.08l133.89-116.57c8.22-7.16 22.29-2.09 22.29 8.05z' }))),
+            createElement("svg", { "aria-hidden": 'true', focusable: 'false', onClick: function () {
+                    var _a;
+                    var max = ((_a = data) === null || _a === void 0 ? void 0 : _a.length) || 0;
+                    if (currentImage < max - 1) {
+                        setCurrentImage(currentImage + 1);
+                    }
+                }, role: 'img', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 448 512', className: "" + arrowRight },
+                createElement("g", null,
+                    createElement("path", { fill: 'rgba(255,255,255,0.5)', d: 'M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zm-83.82 232L182.29 380.65c-8.22 7.16-22.29 2.09-22.29-8V139.4c0-10.14 14.06-15.21 22.29-8.05L316.18 248a10.38 10.38 0 0 1 0 16z' }),
+                    createElement("path", { fill: 'rgba(255,255,255,0.9)', d: 'M316.18 264L182.29 380.65c-8.22 7.16-22.29 2.09-22.29-8V139.4c0-10.14 14.07-15.21 22.29-8.05L316.18 248a10.38 10.38 0 0 1 0 16z' })))))));
 };
 PictureGrid.defaultProps = {
     data: [],

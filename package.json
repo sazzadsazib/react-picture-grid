@@ -1,6 +1,6 @@
 {
   "name": "react-picture-grid",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React Picture Grid Library",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -84,5 +84,6 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "dependencies": {}
 }

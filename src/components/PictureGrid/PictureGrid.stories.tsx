@@ -44,6 +44,7 @@ const data: any[] = [
 ];
 export const withData = () => <PictureGrid data={data} />;
 export const showTitle = () => <PictureGrid data={data} showTitle />;
+export const WithImagePreview = () => <PictureGrid data={data} gap={5} showPreview />;
 export const withCustomGap = () => <PictureGrid data={data}  gap={5} />;
 export const withNoGap = () => <PictureGrid data={data}  gap={0} pattern={['small','small','tall','tall','big','wide','wide']}  />;
 export const ChangeOfPattern = () => <PictureGrid data={data} pattern={['small','small','tall','tall','big','wide','wide']} />;
