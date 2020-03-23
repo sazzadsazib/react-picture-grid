@@ -60,7 +60,7 @@ const data = [
 then call component
 
 ```jsx
-<PictureGrid data={data} showTitle gap={10} />
+<ReactPictureGrid data={data} showTitle gap={10} />
 ```
 
 ## API Documentation
@@ -127,3 +127,7 @@ Fork the repo. pull the master branch if required. [**Create a issue**](https://
 ### 24 March 2020 - v 1.0.2
 
 - [x] Added props `showPreview` for Image Preview
+
+### 24 March 2020 - v 1.0.3
+
+- [x] Fixed Documentation Error
