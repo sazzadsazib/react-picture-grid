@@ -44,9 +44,13 @@ const data: any[] = [
 ];
 export const withData = () => <PictureGrid data={data} />;
 export const showTitle = () => <PictureGrid data={data} showTitle />;
-export const WithImagePreview = () => <PictureGrid data={data} gap={5} showPreview />;
-export const withCustomGap = () => <PictureGrid data={data}  gap={5} />;
-export const withNoGap = () => <PictureGrid data={data}  gap={0} pattern={['small','small','tall','tall','big','wide','wide']}  />;
+export const WithImagePreview = () => <PictureGrid data={data} gap={10} showPreview />;
+export const BackdropColor = () => <PictureGrid data={data} gap={10} showPreview backDropColor='rgba(54, 86, 138, 0.6)' />;
+export const ShowImageInfo = () => <PictureGrid data={data}  gap={10} showTitle showImageInfo showPreview />;
+export const ImageinfoWithCount = () => <PictureGrid data={data}  gap={10} showTitle showImageInfo showPreview showImageCount/>;
+export const closeOnClick = () => <PictureGrid data={data}  gap={10} showTitle showImageInfo showPreview showImageCount closeOnClick/>;
+export const withCustomGap = () => <PictureGrid data={data}  gap={20} />;
 export const ChangeOfPattern = () => <PictureGrid data={data} pattern={['small','small','tall','tall','big','wide','wide']} />;
-export const WithNoData = () => <PictureGrid  />;
+export const withNoGap = () => <PictureGrid data={data}  gap={0} pattern={['small','small','tall','tall','big','wide','wide']}  />;
+export const WithNoData = () => <PictureGrid data={[]}  />;
 

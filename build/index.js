@@ -2938,19 +2938,29 @@ var noData = lib_18({
     minHeight: '400px',
 });
 var imageViewerStyle = lib_18({
-    background: 'rgba(0,0,0,0.7)',
-    position: 'absolute',
-    height: '100vh',
-    width: '100vw',
-    display: 'inline-flex',
-    justifyContent: 'center',
     alignItems: 'center',
+    boxSizing: 'border-box',
+    display: 'flex',
+    height: '100%',
+    justifyContent: 'center',
+    left: '0px',
+    padding: 10,
+    position: 'fixed',
+    top: 0,
+    width: '100%',
+    zIndex: 2001,
+    flexDirection: 'column',
 });
 var imagePreview = lib_18({
     width: 'auto',
-    height: '80vh',
+    height: '70vh',
     marginTop: '-10vh',
-    borderRadius: 5
+    borderRadius: 5,
+    zIndex: 999,
+    '@media(max-width: 600px)': {
+        width: '65%',
+        height: 'auto',
+    },
 });
 var closeButton = lib_18({
     height: 30,
@@ -2961,6 +2971,7 @@ var closeButton = lib_18({
     cursor: 'pointer',
     transform: 'scale(1.0)',
     transition: 'all 0.2s ease-in',
+    zIndex: 999,
     ':hover': {
         transform: 'scale(1.2)',
     },
@@ -2974,6 +2985,7 @@ var arrowLeft = lib_18({
     cursor: 'pointer',
     transform: 'scale(1.0)',
     transition: 'all 0.1s ease-in',
+    zIndex: 999,
     ':hover': {
         transform: 'scale(1.1)',
     },
@@ -2987,9 +2999,36 @@ var arrowRight = lib_18({
     cursor: 'pointer',
     transform: 'scale(1.0)',
     transition: 'all 0.1s ease-in',
+    zIndex: 999,
     ':hover': {
         transform: 'scale(1.1)',
     },
+});
+var imageInfoStyle = lib_18({
+    width: '100%',
+});
+var imageInfoStyleTitle = lib_18({
+    color: '#ffffff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: '0.9rem',
+    width: '60%',
+    margin: '10px auto 0',
+});
+var imageInfoStyleDescription = lib_18({
+    color: 'grey',
+    textAlign: 'center',
+    fontWeight: 'normal',
+    fontSize: '0.7rem',
+    width: '60%',
+    margin: '5px auto 0',
+});
+var closeOnClickStyle = lib_18({
+    background: 'transparent',
+    height: '100%',
+    width: '100%',
+    position: 'fixed',
+    zIndex: 1,
 });
 var generatePatternClass = function (pattern, index) {
     if (pattern.length > 0) {
@@ -3009,7 +3048,7 @@ var generatePatternClass = function (pattern, index) {
     return "" + card;
 };
 var PictureGrid = function (_a) {
-    var data = _a.data, showTitle = _a.showTitle, showPreview = _a.showPreview, gap = _a.gap, className = _a.className, imageClass = _a.imageClass, pattern = _a.pattern;
+    var data = _a.data, showTitle = _a.showTitle, showPreview = _a.showPreview, gap = _a.gap, className = _a.className, imageClass = _a.imageClass, backDropColor = _a.backDropColor, showImageInfo = _a.showImageInfo, showImageCount = _a.showImageCount, closeOnClick = _a.closeOnClick, pattern = _a.pattern;
     var _b = React.useState(-1), currentImage = _b[0], setCurrentImage = _b[1];
     var _c = React.useState(false), isShown = _c[0], setIsShown = _c[1];
     return (React.createElement("div", { className: photoGrid + " " + className, style: isShown
@@ -3032,9 +3071,15 @@ var PictureGrid = function (_a) {
                 showTitle && (React.createElement("div", { className: "" + cardDetails },
                     React.createElement("p", { className: "" + title }, grid.title || 'Title'),
                     React.createElement("p", { className: "" + description }, grid.description || 'Description'))))); }),
-        isShown && currentImage >= 0 && (React.createElement("div", { className: "" + imageViewerStyle },
+        isShown && currentImage >= 0 && (React.createElement("div", { className: "" + imageViewerStyle, style: { background: "" + backDropColor } },
             React.createElement("img", { className: "" + imagePreview, src: (!!data && data[currentImage].image) ||
                     'https://i.ibb.co/rkCBGSG/Artboard-1.png', alt: 'image-preview' }),
+            showImageInfo && (React.createElement("div", { className: "" + imageInfoStyle },
+                React.createElement("p", { className: "" + imageInfoStyleTitle }, !!data && (data[currentImage].title || 'No Titile Available')),
+                React.createElement("p", { className: "" + imageInfoStyleDescription }, !!data &&
+                    (data[currentImage].description ||
+                        'No Description Available')),
+                showImageCount && (React.createElement("p", { className: "" + imageInfoStyleDescription }, !!data && "( " + (currentImage + 1) + " of " + data.length + " )")))),
             React.createElement("svg", { className: "" + closeButton, onClick: function () {
                     setIsShown(false);
                     setCurrentImage(-1);
@@ -3060,15 +3105,22 @@ var PictureGrid = function (_a) {
                 }, role: 'img', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 448 512', className: "" + arrowRight },
                 React.createElement("g", null,
                     React.createElement("path", { fill: 'rgba(255,255,255,0.5)', d: 'M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zm-83.82 232L182.29 380.65c-8.22 7.16-22.29 2.09-22.29-8V139.4c0-10.14 14.06-15.21 22.29-8.05L316.18 248a10.38 10.38 0 0 1 0 16z' }),
-                    React.createElement("path", { fill: 'rgba(255,255,255,0.9)', d: 'M316.18 264L182.29 380.65c-8.22 7.16-22.29 2.09-22.29-8V139.4c0-10.14 14.07-15.21 22.29-8.05L316.18 248a10.38 10.38 0 0 1 0 16z' })))))));
+                    React.createElement("path", { fill: 'rgba(255,255,255,0.9)', d: 'M316.18 264L182.29 380.65c-8.22 7.16-22.29 2.09-22.29-8V139.4c0-10.14 14.07-15.21 22.29-8.05L316.18 248a10.38 10.38 0 0 1 0 16z' }))),
+            React.createElement("div", { onClick: function () {
+                    if (closeOnClick) {
+                        setIsShown(false);
+                        setCurrentImage(-1);
+                    }
+                }, className: "" + closeOnClickStyle })))));
 };
 PictureGrid.defaultProps = {
     data: [],
     showTitle: false,
     showPreview: false,
-    gap: 16,
+    gap: 5,
     className: '',
     imageClass: '',
+    backDropColor: 'rgba(0, 0, 0, 0.8)',
     pattern: ['big', 'tall', 'small', 'small', 'wide', 'wide'],
 };
 
