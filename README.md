@@ -119,7 +119,7 @@ Fork the repo. pull the master branch if required. [**Create a issue**](https://
 
 ## Release log
 
-### 25 March 2020 - v 1.0.4
+### 25 March 2020 - v 1.0.4/1.0.41
 
 - [x] Fixed Backdrop sizing
 - [x] Added Backdrop Color Prop as `backDropColor`

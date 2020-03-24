@@ -2922,12 +2922,14 @@ var title = lib_18({
     fontWeight: 'bold',
     fontSize: '1.1rem',
     textTransform: 'capitalize',
+    textAlign: 'left',
 });
 var description = lib_18({
     color: 'rgb(201, 201, 201)',
     marginTop: '3px !important',
     fontWeight: 'normal',
     fontSize: '0.9rem',
+    textAlign: 'left',
 });
 var noData = lib_18({
     display: 'flex',
