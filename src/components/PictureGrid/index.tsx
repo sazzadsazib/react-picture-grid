@@ -51,6 +51,7 @@ const title = css({
   fontWeight: 'bold',
   fontSize: '1.1rem',
   textTransform: 'capitalize',
+  textAlign: 'left',
 });
 
 const description = css({
@@ -58,6 +59,7 @@ const description = css({
   marginTop: '3px !important',
   fontWeight: 'normal',
   fontSize: '0.9rem',
+  textAlign: 'left',
 });
 
 const noData = css({
