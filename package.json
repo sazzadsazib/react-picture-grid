@@ -12,8 +12,7 @@
     "format": "prettier-standard --format",
     "test": "jest --coverage",
     "storybook": "start-storybook",
-    "build-storybook": "build-storybook -c .storybook -o .storybook-site",
-    "publish": "yarn build && npm publish"
+    "build-storybook": "build-storybook -c .storybook -o .storybook-site"
   },
   "keywords": [],
   "author": "Sazzad Sazib",
