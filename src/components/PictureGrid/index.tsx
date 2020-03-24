@@ -70,20 +70,25 @@ const noData = css({
 });
 
 const imageViewerStyle = css({
-  background: 'rgba(0,0,0,0.7)',
-  position: 'absolute',
-  height: '100vh',
-  width: '100vw',
-  display: 'inline-flex',
-  justifyContent: 'center',
   alignItems: 'center',
+  boxSizing: 'border-box',
+  display: 'flex',
+  height: '100%',
+  justifyContent: 'center',
+  left: '0px',
+  padding: 10,
+  position: 'fixed',
+  top: 0,
+  width: '100%',
+  zIndex: 2001,
+  background: 'rgba(0, 0, 0, 0.8)',
 });
 
 const imagePreview = css({
   width: 'auto',
   height: '80vh',
   marginTop: '-10vh',
-  borderRadius: 5
+  borderRadius: 5,
 });
 
 const closeButton = css({
