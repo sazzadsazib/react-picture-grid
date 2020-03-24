@@ -65,15 +65,19 @@ then call component
 
 ## API Documentation
 
-| Prop        | Type                | Details                                                                                                                   |
-| ----------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| data        | array of data props | This is the basic data array for your picture gallery. Please see Data prop to know how to send data or see example above |
-| showTitle   | boolean             | If this is true it will show title and description from data prop.                                                        |
-| showPreview | boolean             | Allows you to see preview                                                                                                 |
-| gap         | number              | The gap between each picture grid. gap is in px                                                                           |
-| className   | string              | You can Pass a class to change attribute in picture grid                                                                  |
-| imageClass  | string              | any custom class if you want to pass directly to image file                                                               |
-| pattern     | array               | string array of (**big** - **tall** - **small** - **wide**) . big - 2x2, small- 1x1, wide - 1x2, tall - 2x1               |
+| Prop           | Type                | Details                                                                                                                   |
+| -------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| data           | array of data props | This is the basic data array for your picture gallery. Please see Data prop to know how to send data or see example above |
+| showTitle      | boolean             | If this is true it will show title and description from data prop.                                                        |
+| showPreview    | boolean             | Allows you to see preview                                                                                                 |
+| gap            | number              | The gap between each picture grid. gap is in px                                                                           |
+| className      | string              | You can Pass a class to change attribute in picture grid                                                                  |
+| imageClass     | string              | Any custom class if you want to pass directly to image file                                                               |
+| backDropColor  | string              | Color in Hex or Rgba format                                                                                               |
+| showImageInfo  | boolean             | Allows you to see Image's title and description if provided true when `showPreview` prop is true                          |
+| showImageCount | boolean             | Allows you to see Image count in `showImageInfo` when both `showImageInfo` & `showPreview` is true                        |
+| closeOnClick   | boolean             | Allows you to see close Image Preview when user clicked on background                                                     |
+| pattern        | array               | string array of (**big** - **tall** - **small** - **wide**) . big - 2x2, small- 1x1, wide - 1x2, tall - 2x1               |
 
 ### Data Prop
 
@@ -115,19 +119,25 @@ Fork the repo. pull the master branch if required. [**Create a issue**](https://
 
 ## Release log
 
-### 23 March 2020 - v 1.0.0
+### 25 March 2020 - v 1.0.4
 
-- [x] Initial Release with Component.
+- [x] Fixed Backdrop sizing
+- [x] Added Backdrop Color Prop as `backDropColor`
+- [x] Added Props `showImageInfo` , `showImageCount` & `closeOnClick`
+
+### 24 March 2020 - v 1.0.3
+
+- [x] Fixed Documentation Error
+
+### 24 March 2020 - v 1.0.2
+
+- [x] Added props `showPreview` for Image Preview
 
 ### 23 March 2020 - v 1.0.1
 
 - [x] Updated Documentation
 - [x] Updated storybook
 
-### 24 March 2020 - v 1.0.2
+### 23 March 2020 - v 1.0.0
 
-- [x] Added props `showPreview` for Image Preview
-
-### 24 March 2020 - v 1.0.3
-
-- [x] Fixed Documentation Error
+- [x] Initial Release with Component.

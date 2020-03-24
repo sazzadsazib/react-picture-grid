@@ -81,14 +81,19 @@ const imageViewerStyle = css({
   top: 0,
   width: '100%',
   zIndex: 2001,
-  background: 'rgba(0, 0, 0, 0.8)',
+  flexDirection: 'column',
 });
 
 const imagePreview = css({
   width: 'auto',
-  height: '80vh',
+  height: '70vh',
   marginTop: '-10vh',
   borderRadius: 5,
+  zIndex: 999,
+  '@media(max-width: 600px)': {
+    width: '65%',
+    height: 'auto',
+  },
 });
 
 const closeButton = css({
@@ -100,6 +105,7 @@ const closeButton = css({
   cursor: 'pointer',
   transform: 'scale(1.0)',
   transition: 'all 0.2s ease-in',
+  zIndex: 999,
   ':hover': {
     transform: 'scale(1.2)',
   },
@@ -114,6 +120,7 @@ const arrowLeft = css({
   cursor: 'pointer',
   transform: 'scale(1.0)',
   transition: 'all 0.1s ease-in',
+  zIndex: 999,
   ':hover': {
     transform: 'scale(1.1)',
   },
@@ -127,18 +134,53 @@ const arrowRight = css({
   cursor: 'pointer',
   transform: 'scale(1.0)',
   transition: 'all 0.1s ease-in',
+  zIndex: 999,
   ':hover': {
     transform: 'scale(1.1)',
   },
 });
 
+const imageInfoStyle = css({
+  width: '100%',
+});
+
+const imageInfoStyleTitle = css({
+  color: '#ffffff',
+  textAlign: 'center',
+  fontWeight: 'bold',
+  fontSize: '0.9rem',
+  width: '60%',
+  margin: '10px auto 0',
+});
+
+const imageInfoStyleDescription = css({
+  color: 'grey',
+  textAlign: 'center',
+  fontWeight: 'normal',
+  fontSize: '0.7rem',
+  width: '60%',
+  margin: '5px auto 0',
+});
+
+const closeOnClickStyle = css({
+  background: 'transparent',
+  height: '100%',
+  width: '100%',
+  position: 'fixed',
+  zIndex: 1,
+})
+
 interface Props {
-  data?: dataObjectProps[];
+  data: dataObjectProps[];
   showTitle?: boolean;
   showPreview?: boolean; //will implement later :(
   gap?: number;
   className?: string;
   imageClass?: string;
+  backDropColor?: string;
+  showImageInfo?: boolean;
+  showImageCount?: boolean;
+  closeOnClick?: boolean;
   pattern?: ('big' | 'tall' | 'small' | 'wide')[];
 }
 
@@ -176,6 +218,10 @@ const PictureGrid: React.FC<Props> = ({
   gap,
   className,
   imageClass,
+  backDropColor,
+  showImageInfo,
+  showImageCount,
+  closeOnClick,
   pattern,
 }) => {
   const [currentImage, setCurrentImage] = React.useState<number>(-1);
@@ -228,7 +274,10 @@ const PictureGrid: React.FC<Props> = ({
         ))}
 
       {isShown && currentImage >= 0 && (
-        <div className={`${imageViewerStyle}`}>
+        <div
+          className={`${imageViewerStyle}`}
+          style={{ background: `${backDropColor}` }}
+        >
           <img
             className={`${imagePreview}`}
             src={
@@ -237,7 +286,23 @@ const PictureGrid: React.FC<Props> = ({
             }
             alt='image-preview'
           />
-
+          {showImageInfo && (
+            <div className={`${imageInfoStyle}`}>
+              <p className={`${imageInfoStyleTitle}`}>
+                {!!data && (data[currentImage].title || 'No Titile Available')}
+              </p>
+              <p className={`${imageInfoStyleDescription}`}>
+                {!!data &&
+                  (data[currentImage].description ||
+                    'No Description Available')}
+              </p>
+              {showImageCount && (
+                <p className={`${imageInfoStyleDescription}`}>
+                  {!!data && `( ${currentImage + 1} of ${data.length} )`}
+                </p>
+              )}
+            </div>
+          )}
           <svg
             className={`${closeButton}`}
             onClick={() => {
@@ -306,6 +371,15 @@ const PictureGrid: React.FC<Props> = ({
               ></path>
             </g>
           </svg>
+          <div
+            onClick={() => {
+              if (closeOnClick) {
+                setIsShown(false);
+                setCurrentImage(-1);
+              }
+            }}
+            className={`${closeOnClickStyle}`}
+          />
         </div>
       )}
     </div>
@@ -316,9 +390,10 @@ PictureGrid.defaultProps = {
   data: [],
   showTitle: false,
   showPreview: false,
-  gap: 16,
+  gap: 5,
   className: '',
   imageClass: '',
+  backDropColor: 'rgba(0, 0, 0, 0.8)',
   pattern: ['big', 'tall', 'small', 'small', 'wide', 'wide'],
 };
 
